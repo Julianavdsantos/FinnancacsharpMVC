@@ -1,0 +1,48 @@
+﻿@model List<Expense_Tracker.Models.Transaction>
+
+<h2>Todas as Transações</h2>
+<div class="form-group mb-4">
+    <select id="dataFiltroDe" class="form-control de">
+        <option value="">
+            Todas as Datas
+        </option>
+        @foreach (var transaction in Model)
+        {
+            <option value="@transaction.Date.ToShortDateString()">@transaction.Date.ToShortDateString()</option>
+        }
+    </select>
+</div>
+
+<p>A</p>
+
+<div class="form-group mb-4">
+    <select id="dataFiltroA" class="form-control a">
+        <option value="">
+            Todas as Datas
+        </option>
+        @foreach (var transaction in Model)
+        {
+            <option value="@transaction.Date.ToShortDateString()">@transaction.Date.ToShortDateString()</option>
+        }
+    </select>
+
+    <button class="buscar"></button>
+</div>
+<div class="row">
+    <div class="col-md-7">
+        <ejs-grid id="transactions" dataSource="@Model" gridLines="None"
+                  allowSorting="true" allowPaging="true">
+            <e-grid-pagesettings pageSize="10"></e-grid-pagesettings>
+            <e-grid-columns>
+                <e-grid-column headerText="Category" field="CategoryTitleWithIcon"></e-grid-column>
+                <e-grid-column headerText="Date" field="Date" width="110px"
+                               type="date" format="MMM-dd-yy" textAlign="Left"></e-grid-column>
+                <e-grid-column headerText="Amount" field="FormattedAmount" textAlign="Right" width="110px"></e-grid-column>
+              
+            </e-grid-columns>
+        </ejs-grid>
+    </div>
+
+</div>
+
+
